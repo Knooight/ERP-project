@@ -22,7 +22,19 @@ int main()
 
         if (checkEntry(id, password) == 1)
         {
-            cout << "yo";
+            while (true)
+            {
+                int opt;
+
+                cout << endl << "--------------------";
+                cout << "1. ADMIN MANAGMENT" << endl;
+                cout << "2. PURCHASE MANAGEMENT" << endl << endl;
+                cout << "Type 0 to EXIT the program" << endl;
+                cout << "--------------------" << endl; 
+                cout << "ENTER YOU OPTION: ";
+                cin >> opt;
+            }
+            
         }
     }
 
@@ -33,12 +45,13 @@ int checkEntry(int ID, int PASSWORD)
 {
     const int adminID = 1234;
     const int adminPASS = 2345;
+    int tracker = 1;
 
     if (ID == adminID && PASSWORD == adminPASS)
     {
         cout << endl
              << "[Login Successful]" << endl;
-        return 1;
+        return tracker;
     }
 
     else if (ID != adminID || PASSWORD != adminPASS)
@@ -46,9 +59,8 @@ int checkEntry(int ID, int PASSWORD)
         cout << "Wrong Password or Username";
     }
     
-    else if (ID == 0 && PASSWORD == 0)
+    /*else if (ID == 0 && PASSWORD == 0)
     {
         cout << "Program Terminated";
-        return 2;
-    }
+    }*/
 }
