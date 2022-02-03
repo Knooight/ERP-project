@@ -125,6 +125,7 @@ void managment(int option)
             cout << endl
                  << "1. ADD STOCK \t 2. REMOVE STOCK \t 3. UPDATE PRICE" << endl
                  << "Type 0 to go BACK" << endl
+                 << endl
                  << "Enter option: ";
             cin >> admin_opt;
 
@@ -140,7 +141,8 @@ void managment(int option)
 
             else
             {
-                cout << "Wrong option, try again...";
+                cout << endl
+                     << "Wrong option, try again...";
             }
         }
     }
@@ -205,11 +207,12 @@ void editMNGMT(int option)
 
         if (product_indx < 0 || product_indx > 4)
         {
-            cout << "invalid product number, try again..." << endl;
+            cout << "invalid product number, try again..." << endl
+                 << endl;
         }
 
         else
-        { 
+        {
             cout << "numbers of products to add: ";
             cin >> stock_up;
 
