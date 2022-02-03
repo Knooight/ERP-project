@@ -1,7 +1,13 @@
 # ERP PROJECT
 
-Made a simple  Enterprise Resource Planner code. 
+Made a simple  Enterprise Resource Planner code.
+## What can it do?
+ 
+My ERP system has two options
+     **‣** Admin Management
+     **‣** Purchase Management
 
-It can only Add or stock for products, update price, 
+#### THE ADMIN MANAGEMENT
 
-![This is a image of **Admin-Management panel**] (D:\c programming\Practises\cpp pracrise\images\admin-management.png)
+#### THE PURCHASE MANAGEMENT
+
