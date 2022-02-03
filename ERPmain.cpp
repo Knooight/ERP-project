@@ -98,6 +98,8 @@ int checkEntry(int ID, int PASSWORD)
         cout << "Wrong Password or Username";
         return EXIT_FAILURE;
     }
+
+    return EXIT_FAILURE;
 }
 
 //admin and customer mananagement option
