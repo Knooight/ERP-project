@@ -3,12 +3,12 @@
 using namespace std;
 
 //global product strings
-string product_name[4] = {"Milk", "Choclates", "Bread", "chips"};
+string product_name[4] = {"Milks", "Juice", "Bread", "chips"};
 int product_code[4] = {15, 30, 10, 50};
 int product_stock[4] = {20, 50, 25, 40};
-float product_price[4] = {20, 40, 100, 50};
+float product_price[4] = {20, 40, 35, 50};
 
-// function call
+// function declarations
 int checkEntry(int ID, int PASSWORD);
 void managment(int option);
 void editMNGMT(int option);
@@ -70,21 +70,27 @@ int checkEntry(int ID, int PASSWORD)
     }
 }
 
-//admin and customer mananagement option 
+//admin and customer mananagement option
 void managment(int option)
 {
     if (option == 1)
     {
         while (true)
         {
+            cout << endl
+                 << "+--PRODUCT NAME & CODE--+----- STOCK----+---PRICE---+" << endl;
+            cout << "+-----------------------+---------------+-----------+";
             for (int i = 0; i < 4; i++)
             {
-                cout << "| " << product_name[i] << "(" << product_code << ")"
-                     << "|" << product_stock[i] << "|" << product_price << endl;
+                cout << endl
+                     << "|" << i + 1 << "." << product_name[i] << "(" << product_code[i] << ")\t"
+                     << "\t|\t" << product_stock[i] << "\t|\t" << product_price[i] << "  |" << endl;
+                cout << "+-----------------------+---------------+-----------+";
             }
 
             int admin_opt;
-            cout << "1. ADD STOCK \t 2. REMOVE STOCK \t 3. UPDATE PRICE" << endl
+            cout << endl
+                 << "1. ADD STOCK \t 2. REMOVE STOCK \t 3. UPDATE PRICE" << endl
                  << "Type 0 to go BACK" << endl
                  << "Enter option: ";
             cin >> admin_opt;
@@ -104,7 +110,7 @@ void editMNGMT(int option)
     {
         cout << "product number to add stock: ";
         cin >> product_indx;
-        cout  << "numbers of products to add: ";
+        cout << "numbers of products to add: ";
         cin >> stock_up;
 
         product_stock[product_indx - 1] = product_stock[product_indx - 1] + stock_up;
@@ -116,9 +122,9 @@ void editMNGMT(int option)
     {
         cout << "product number to add stock: ";
         cin >> product_indx;
-        cout  << "numbers of products to add: ";
+        cout << "numbers of products to add: ";
         cin >> stock_rmv;
-        
+
         if (product_stock[product_indx - 1] < stock_rmv)
         {
             product_stock[product_indx - 1] = 0;
@@ -135,11 +141,12 @@ void editMNGMT(int option)
     {
         cout << "product number to update price: ";
         cin >> product_indx;
-        cout  << "new price: ";
+        cout << "new price: ";
         cin >> price_new;
 
         product_price[product_indx - 1] = price_new;
-        cout << endl << "updated price for " << product_name[product_indx - 1] << "= " << product_price[product_indx - 1];
+        cout << endl
+             << "updated price for " << product_name[product_indx - 1] << "= " << product_price[product_indx - 1];
     }
 
     else if (option = 0)
