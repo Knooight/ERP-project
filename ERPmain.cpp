@@ -21,12 +21,13 @@ float total = 0;
 int checkEntry(int ID, int PASSWORD);
 void managment(int option);
 void editMNGMT(int option);
-void editPURCHASE(int product_indx);
-void TOTALcalc();
+void cartUPDATE(int product_indx);
+void totalCART_calc();
 
 int main()
 {
     int id, password;
+    bool terminate = false;
 
     while (true)
     {
@@ -36,7 +37,7 @@ int main()
         cout << "password: ";
         cin >> password;
 
-        if (checkEntry(id, password) == 1)
+        if (checkEntry(id, password) == 0)
         {
             while (true)
             {
@@ -59,6 +60,7 @@ int main()
 
                 else if (opt == 0)
                 {
+                    terminate = true;
                     break;
                 }
 
@@ -67,6 +69,11 @@ int main()
                     cout << "Wrong option, try again...";
                 }
             }
+        }
+
+        if (terminate == true)
+        {
+            break;
         }
     }
 
@@ -78,20 +85,18 @@ int checkEntry(int ID, int PASSWORD)
 {
     const int adminID = 1234;
     const int adminPASS = 2345;
-    int tracker = 1;
 
     if (ID == adminID && PASSWORD == adminPASS)
     {
         cout << endl
              << "[Login Successful]" << endl;
-        return tracker;
+        return EXIT_SUCCESS;
     }
 
     else if (ID != adminID || PASSWORD != adminPASS)
     {
         cout << "Wrong Password or Username";
-        tracker = 0;
-        return tracker;
+        return EXIT_FAILURE;
     }
 }
 
@@ -158,14 +163,14 @@ void managment(int option)
             while (true)
             {
                 cout << endl
-                    << "poroduct number to buy(0 to exit): ";
+                     << "poroduct number to buy(0 to exit): ";
                 cin >> product_indx;
 
                 if (product_indx == 0)
                 {
                     break;
                 }
-                
+
                 else if (product_indx > 4 || product_indx < 1)
                 {
                     cout << "Invalid serial number, try again...";
@@ -173,17 +178,15 @@ void managment(int option)
 
                 else
                 {
-                    editPURCHASE(product_indx);
+                    cartUPDATE(product_indx);
                 }
             }
 
-            TOTALcalc();
-        }
-    }
+            totalCART_calc();
 
-    if (option == 0)
-    {
-        exit(0);
+            total = 0;
+            break;
+        }
     }
 }
 
@@ -237,7 +240,7 @@ void editMNGMT(int option)
     }
 }
 
-void editPURCHASE(int product_indx)
+void cartUPDATE(int product_indx)
 {
     cart[idx] = product_name[product_indx - 1];
     cout << "Number of products of buy: ";
@@ -246,7 +249,7 @@ void editPURCHASE(int product_indx)
     if (product_quan > product_stock[product_indx - 1])
     {
         cout << endl
-                << "!! INSUFFICIENT STOCK !!" << endl;
+             << "!! INSUFFICIENT STOCK !!" << endl;
     }
 
     else
@@ -258,7 +261,7 @@ void editPURCHASE(int product_indx)
     }
 }
 
-void TOTALcalc()
+void totalCART_calc()
 {
     //sum of total price
     for (int i = 0; i < idx; i++)
@@ -268,16 +271,17 @@ void TOTALcalc()
 
     //reception letter
     cout << endl
-         << "[NAME]\t [QUANTITY]\t [PRICE]";
+         << "+-[NAME]--------+-[QUAN.]-+--[PRICE]--+" << endl
+         << "+---------------+---------+-----------+";
 
     for (int i = 0; i < idx; i++)
     {
         cout << endl
-             << cart[i] << "\t" << quan[i] << "\t" << price[i] * quan[i];
+             << "| " << cart[i] << " \t|\t" << quan[i] << "|\t" << price[i] * quan[i] << "   |" << endl
+             << "+---------------+---------+-----------+";
     }
 
     cout << endl
-         << "TOTAL: " << total << " BDT";
-
-    total = 0;
+         << "| TOTAL: " << total << " BDT                      |" << endl
+         << "+-------------------------------------+";
 }
