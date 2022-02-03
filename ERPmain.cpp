@@ -40,7 +40,20 @@ int main()
                 cout << "ENTER YOU OPTION: ";
                 cin >> opt;
 
-                managment(opt);
+                if (opt == 1 || opt == 2 || opt == 3)
+                {
+                    managment(opt);
+                }
+
+                else if (opt == 0)
+                {
+                    break;
+                }
+                
+                else
+                {
+                    cout << "Wrong option, try again...";
+                }
             }
         }
     }
@@ -73,6 +86,7 @@ int checkEntry(int ID, int PASSWORD)
 //admin and customer mananagement option
 void managment(int option)
 {
+    //admin management
     if (option == 1)
     {
         while (true)
@@ -95,9 +109,47 @@ void managment(int option)
                  << "Enter option: ";
             cin >> admin_opt;
 
-            editMNGMT(admin_opt);
+            if (admin_opt == 1 || admin_opt == 2|| admin_opt == 3)
+            {
+                editMNGMT(admin_opt);
+            }
+
+            else if (admin_opt == 0)
+            {
+                break;
+            }
+
+            else
+            {
+                cout << "Wrong option, try again...";
+            }
         }
     }
+
+    //purchase management
+    if (option == 2)
+    {
+        while (true)
+        {
+            cout << endl
+                 << "+--PRODUCT NAME & CODE--+----- STOCK----+---PRICE---+" << endl;
+            cout << "+-----------------------+---------------+-----------+";
+            for (int i = 0; i < 4; i++)
+            {
+                cout << endl
+                     << "|" << i + 1 << "." << product_name[i] << "(" << product_code[i] << ")\t"
+                     << "\t|\t" << product_stock[i] << "\t|\t" << product_price[i] << "  |" << endl;
+                cout << "+-----------------------+---------------+-----------+";
+            }
+        }
+        
+    }
+
+    if (option == 0)
+    {
+        exit(0);
+    }
+    
 }
 
 void editMNGMT(int option)
@@ -148,14 +200,16 @@ void editMNGMT(int option)
         cout << endl
              << "updated price for " << product_name[product_indx - 1] << "= " << product_price[product_indx - 1];
     }
+}
 
-    else if (option = 0)
-    {
-        exit(1);
-    }
+void editPURCHASE(int option)
+{
+    int product_indx, product_quan;
 
-    else
-    {
-        cout << "wrong option number. try again";
-    }
+    int cart[1000];
+    int quan[1000];
+    float price[1000];
+    float total;
+
+
 }
