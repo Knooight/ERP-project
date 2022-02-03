@@ -202,19 +202,28 @@ void editMNGMT(int option)
     {
         cout << "product number to add stock: ";
         cin >> product_indx;
-        cout << "numbers of products to add: ";
-        cin >> stock_up;
 
-        product_stock[product_indx - 1] = product_stock[product_indx - 1] + stock_up;
-        cout << "new stock for " << product_name[product_indx - 1] << "= " << product_stock[product_indx - 1] << endl;
+        if (product_indx < 0 || product_indx > 4)
+        {
+            cout << "invalid product number, try again..." << endl;
+        }
+
+        else
+        { 
+            cout << "numbers of products to add: ";
+            cin >> stock_up;
+
+            product_stock[product_indx - 1] = product_stock[product_indx - 1] + stock_up;
+            cout << "new stock for " << product_name[product_indx - 1] << "= " << product_stock[product_indx - 1] << endl;
+        }
     }
 
     //removes stock
     else if (option = 2)
     {
-        cout << "product number to add stock: ";
+        cout << "product number to remove stock: ";
         cin >> product_indx;
-        cout << "numbers of products to add: ";
+        cout << "numbers of products to remove: ";
         cin >> stock_rmv;
 
         if (product_stock[product_indx - 1] < stock_rmv)
