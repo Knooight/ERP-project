@@ -3,9 +3,9 @@
 Made a simple  Enterprise Resource Planner code.
 ## What can it do?
  
-My ERP system has two options
-     **‣** Admin Management
-     **‣** Purchase Management
+<p>My ERP system has two options<br>
+     **‣** Admin Management<br>
+     **‣** Purchase Management</p>
 
 #### THE ADMIN MANAGEMENT
 
