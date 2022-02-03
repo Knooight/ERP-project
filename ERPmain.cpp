@@ -2,14 +2,16 @@
 #include <string>
 using namespace std;
 
+//global product strings
 string product_name[4] = {"Milk", "Choclates", "Bread", "chips"};
 int product_code[4] = {15, 30, 10, 50};
 int product_stock[4] = {20, 50, 25, 40};
 float product_price[4] = {20, 40, 100, 50};
 
+// function call
 int checkEntry(int ID, int PASSWORD);
 void managment(int option);
-
+void editMNGMT(int option);
 int main()
 {
     int id, password;
@@ -38,7 +40,7 @@ int main()
                 cout << "ENTER YOU OPTION: ";
                 cin >> opt;
 
-                
+                managment(opt);
             }
         }
     }
@@ -46,6 +48,7 @@ int main()
     return 0;
 }
 
+//login window
 int checkEntry(int ID, int PASSWORD)
 {
     const int adminID = 1234;
@@ -67,6 +70,7 @@ int checkEntry(int ID, int PASSWORD)
     }
 }
 
+//admin and customer mananagement option 
 void managment(int option)
 {
     if (option == 1)
@@ -81,7 +85,70 @@ void managment(int option)
 
             int admin_opt;
             cout << "1. ADD STOCK \t 2. REMOVE STOCK \t 3. UPDATE PRICE" << endl
-                 << "Type 0 to go BACK";
+                 << "Type 0 to go BACK" << endl
+                 << "Enter option: ";
+            cin >> admin_opt;
+
+            editMNGMT(admin_opt);
         }
+    }
+}
+
+void editMNGMT(int option)
+{
+    int product_indx, stock_up, stock_rmv;
+    float price_new;
+
+    // adds stock
+    if (option = 1)
+    {
+        cout << "product number to add stock: ";
+        cin >> product_indx;
+        cout  << "numbers of products to add: ";
+        cin >> stock_up;
+
+        product_stock[product_indx - 1] = product_stock[product_indx - 1] + stock_up;
+        cout << "new stock for " << product_name[product_indx - 1] << "= " << product_stock[product_indx - 1] << endl;
+    }
+
+    //removes stock
+    else if (option = 2)
+    {
+        cout << "product number to add stock: ";
+        cin >> product_indx;
+        cout  << "numbers of products to add: ";
+        cin >> stock_rmv;
+        
+        if (product_stock[product_indx - 1] < stock_rmv)
+        {
+            product_stock[product_indx - 1] = 0;
+        }
+
+        else
+        {
+            product_stock[product_indx - 1] = product_stock[product_indx - 1] - stock_rmv;
+        }
+    }
+
+    //updates price
+    else if (option = 3)
+    {
+        cout << "product number to update price: ";
+        cin >> product_indx;
+        cout  << "new price: ";
+        cin >> price_new;
+
+        product_price[product_indx - 1] = price_new;
+        cout << endl << "updated price for " << product_name[product_indx - 1] << "= " << product_price[product_indx - 1];
+    }
+
+    else if (option = 0)
+    {
+        exit(1);
+    }
+
+    else
+    {
+        cout << "wrong option number. try again";
     }
 }
