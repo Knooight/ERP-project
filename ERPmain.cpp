@@ -8,10 +8,22 @@ int product_code[4] = {15, 30, 10, 50};
 int product_stock[4] = {20, 50, 25, 40};
 float product_price[4] = {20, 40, 35, 50};
 
+//global cart strings for purchase management
+int product_quan;
+int idx = 0;
+
+string cart[1000];
+int quan[1000];
+float price[1000];
+float total = 0;
+
 // function declarations
 int checkEntry(int ID, int PASSWORD);
 void managment(int option);
 void editMNGMT(int option);
+void editPURCHASE(int product_indx);
+void TOTALcalc();
+
 int main()
 {
     int id, password;
@@ -49,7 +61,7 @@ int main()
                 {
                     break;
                 }
-                
+
                 else
                 {
                     cout << "Wrong option, try again...";
@@ -109,7 +121,7 @@ void managment(int option)
                  << "Enter option: ";
             cin >> admin_opt;
 
-            if (admin_opt == 1 || admin_opt == 2|| admin_opt == 3)
+            if (admin_opt == 1 || admin_opt == 2 || admin_opt == 3)
             {
                 editMNGMT(admin_opt);
             }
@@ -129,6 +141,8 @@ void managment(int option)
     //purchase management
     if (option == 2)
     {
+        int product_indx;
+
         while (true)
         {
             cout << endl
@@ -141,15 +155,36 @@ void managment(int option)
                      << "\t|\t" << product_stock[i] << "\t|\t" << product_price[i] << "  |" << endl;
                 cout << "+-----------------------+---------------+-----------+";
             }
+            while (true)
+            {
+                cout << endl
+                    << "poroduct number to buy(0 to exit): ";
+                cin >> product_indx;
+
+                if (product_indx > 4 || product_indx < 1)
+                {
+                    cout << "Invalid serial number, try again...";
+                }
+
+                else if (product_indx == 0)
+                {
+                    break;
+                }
+
+                else
+                {
+                    editPURCHASE(product_indx);
+                }
+            }
+
+            TOTALcalc();
         }
-        
     }
 
     if (option == 0)
     {
         exit(0);
     }
-    
 }
 
 void editMNGMT(int option)
@@ -202,14 +237,47 @@ void editMNGMT(int option)
     }
 }
 
-void editPURCHASE(int option)
+void editPURCHASE(int product_indx)
 {
-    int product_indx, product_quan;
+    cart[idx] = product_name[product_indx - 1];
+    cout << "Number of products of buy: ";
+    cin >> product_quan;
 
-    int cart[1000];
-    int quan[1000];
-    float price[1000];
-    float total;
+    if (product_quan > product_stock[product_indx - 1])
+    {
+        cout << endl
+                << "!! INSUFFICIENT STOCK !!" << endl;
+    }
 
+    else
+    {
+        product_stock[product_indx - 1] = product_stock[product_indx - 1] - product_quan;
+        price[idx] = product_price[product_indx - 1];
+        quan[idx] = product_quan;
+        idx++;
+    }
+}
 
+void TOTALcalc()
+{
+    //sum of total price
+    for (int i = 0; i < idx; i++)
+    {
+        total = total + price[i] * quan[i];
+    }
+
+    //reception letter
+    cout << endl
+         << "[NAME]\t [QUANTITY]\t [PRICE]";
+
+    for (int i = 0; i < idx; i++)
+    {
+        cout << endl
+             << cart[i] << "\t" << quan[i] << "\t" << price[i] * quan[i];
+    }
+
+    cout << endl
+         << "TOTAL: " << total << " BDT";
+
+    total = 0;
 }
