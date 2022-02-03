@@ -129,7 +129,7 @@ void managment(int option)
                  << "Enter option: ";
             cin >> admin_opt;
 
-            if (admin_opt == 1 || admin_opt == 2 || admin_opt == 3)
+            if (admin_opt > 0 || admin_opt < 5)
             {
                 editMNGMT(admin_opt);
             }
@@ -200,7 +200,7 @@ void editMNGMT(int option)
     float price_new;
 
     // adds stock
-    if (option = 1)
+    if (option == 1)
     {
         cout << "product number to add stock: ";
         cin >> product_indx;
@@ -222,7 +222,7 @@ void editMNGMT(int option)
     }
 
     //removes stock
-    else if (option = 2)
+    else if (option == 2)
     {
         cout << "product number to remove stock: ";
         cin >> product_indx;
@@ -241,7 +241,7 @@ void editMNGMT(int option)
     }
 
     //updates price
-    else if (option = 3)
+    else if (option == 3)
     {
         cout << "product number to update price: ";
         cin >> product_indx;
