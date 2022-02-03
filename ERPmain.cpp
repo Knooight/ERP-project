@@ -161,14 +161,14 @@ void managment(int option)
                     << "poroduct number to buy(0 to exit): ";
                 cin >> product_indx;
 
-                if (product_indx > 4 || product_indx < 1)
-                {
-                    cout << "Invalid serial number, try again...";
-                }
-
-                else if (product_indx == 0)
+                if (product_indx == 0)
                 {
                     break;
+                }
+                
+                else if (product_indx > 4 || product_indx < 1)
+                {
+                    cout << "Invalid serial number, try again...";
                 }
 
                 else
