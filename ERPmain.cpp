@@ -53,7 +53,7 @@ int main()
                 cout << "ENTER YOU OPTION: ";
                 cin >> opt;
 
-                if (opt == 1 || opt == 2 || opt == 3)
+                if (opt >= 1 && opt <= 2)
                 {
                     managment(opt);
                 }
@@ -129,7 +129,7 @@ void managment(int option)
                  << "Enter option: ";
             cin >> admin_opt;
 
-            if (admin_opt > 0 || admin_opt < 5)
+            if (admin_opt > 0 && admin_opt < 5)
             {
                 editMNGMT(admin_opt);
             }
