@@ -189,6 +189,8 @@ void managment(int option)
             totalCART_calc();
 
             total = 0;
+            cout << endl 
+                 << "Thanks for purchasing." << endl;
             break;
         }
     }
